@@ -19,3 +19,4 @@
 //   },
 //   Buffer.from(data)
 // ).toString('base64');
+// export default encryptedText2;

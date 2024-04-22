@@ -1,6 +1,6 @@
 import R1 from "../models/auth.js"
 import bcrypt from "bcryptjs"
-import jwt from "jsonywebtoken"
+import jwt from "jsonwebtoken"
 
 export async function register(req,res){
     const username=req.body.username;
