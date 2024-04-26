@@ -4,6 +4,7 @@ dotenv.config();
 // import csv from "csv-parser"
 import fs from "fs"
 import {AESEncrypt} from "./EncrDecr/AES.js"
+import huff from "./EncrDecr/huffman.js";
 import cors from "cors"
 import cookiep from "cookie-parser"
 import mongo from "mongoose"
@@ -16,7 +17,8 @@ mongo.connect(process.env.MONGO_DB_URL).then(()=>{
     console.log("connected to mongo");
 })
 const filePath = 'a.txt';
-AESEncrypt()
+// AESEncrypt()
+huff(filePath)
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, "./public/uploads")

@@ -1,9 +1,9 @@
 import crypto from "crypto";
 import fs from "fs";
 
-export function AESEncrypt() {
+export function AESEncrypt(filePath) {
     // Read data from the file
-    const filePath="a.txt"
+    // const filePath="a.txt"
     const fileAdd=`public/uploads/${filePath}`
     console.log(fileAdd)
     const data = fs.readFileSync(fileAdd);
@@ -26,28 +26,28 @@ export function AESEncrypt() {
     };
     // Create a new file name with the prefix 'E'
     const encryptedFilePath = `public/downloads/E${filePath}`;
-    // Write the encrypted data to the new file
     fs.writeFileSync(encryptedFilePath, JSON.stringify(encryptedObject));
     
-    const decrObject = JSON.parse(fs.readFileSync(encryptedFilePath))
-    const key1 = Buffer.from(decrObject.key, 'hex');
-    const iv1 = Buffer.from(decrObject.iv, 'hex');
-    const decrData = Buffer.from(decrObject.encryptedData, 'hex');
-// Encrypted text
-; // Insert the encrypted text here
+   return encryptedFilePath
 
-// Encryption key and initialization vector (IV)
-// const key1 = Buffer.from(decrdata, 'hex'); // Insert the key in hexadecimal format
-// const iv1 = Buffer.from(decrdata, 'hex'); // Insert the IV in hexadecimal format
-
-// Create AES decipher object
-const decipher = crypto.createDecipheriv('aes-256-cbc', key1, iv1);
-
-// Decrypt the text
-let decryptedText = decipher.update(decrData);
-decryptedText += decipher.final();
-
-console.log('Decrypted Text:', decryptedText);
-
-    // return encryptedFilePath; // Return the path of the encrypted file
 }
+// DECRYPTION
+// const decrObject = JSON.parse(fs.readFileSync(encryptedFilePath))
+// const key1 = Buffer.from(decrObject.key, 'hex');
+// const iv1 = Buffer.from(decrObject.iv, 'hex');
+// const decrData = Buffer.from(decrObject.encryptedData, 'hex');
+// // Encrypted text
+// ; // Insert the encrypted text here
+
+// // Encryption key and initialization vector (IV)
+// // const key1 = Buffer.from(decrdata, 'hex'); // Insert the key in hexadecimal format
+// // const iv1 = Buffer.from(decrdata, 'hex'); // Insert the IV in hexadecimal format
+
+// // Create AES decipher object
+// const decipher = crypto.createDecipheriv('aes-256-cbc', key1, iv1);
+
+// // Decrypt the text
+// let decryptedText = decipher.update(decrData);
+// decryptedText += decipher.final();
+
+// console.log('Decrypted Text:', decryptedText);

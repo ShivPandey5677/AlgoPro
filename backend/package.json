@@ -12,7 +12,8 @@
     "mongoose": "^8.3.1",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "priority-queue": "^0.2.1"
   },
   "name": "backend",
   "version": "1.0.0",
