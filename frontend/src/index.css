@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer utilities {
     /* TYPOGRAPHY */
     .h1-bold {
