@@ -20,6 +20,7 @@ export function AESEncrypt(filePath) {
     encryptedData = Buffer.concat([encryptedData, cipher.final()]);
 
     const encryptedObject = {
+        type:"AES",
         key: key.toString('hex'),
         iv: iv.toString('hex'),
         encryptedData: encryptedData.toString('hex')
@@ -32,22 +33,25 @@ export function AESEncrypt(filePath) {
 
 }
 // DECRYPTION
-// const decrObject = JSON.parse(fs.readFileSync(encryptedFilePath))
-// const key1 = Buffer.from(decrObject.key, 'hex');
-// const iv1 = Buffer.from(decrObject.iv, 'hex');
-// const decrData = Buffer.from(decrObject.encryptedData, 'hex');
-// // Encrypted text
-// ; // Insert the encrypted text here
+export function AESDecrypt(filePath){
+const decrObject = JSON.parse(fs.readFileSync(encryptedFilePath))
+const key1 = Buffer.from(decrObject.key, 'hex');
+const iv1 = Buffer.from(decrObject.iv, 'hex');
+const decrData = Buffer.from(decrObject.encryptedData, 'hex');
+// Encrypted text
+; // Insert the encrypted text here
 
-// // Encryption key and initialization vector (IV)
-// // const key1 = Buffer.from(decrdata, 'hex'); // Insert the key in hexadecimal format
-// // const iv1 = Buffer.from(decrdata, 'hex'); // Insert the IV in hexadecimal format
+// Encryption key and initialization vector (IV)
+// const key1 = Buffer.from(decrdata, 'hex'); // Insert the key in hexadecimal format
+// const iv1 = Buffer.from(decrdata, 'hex'); // Insert the IV in hexadecimal format
 
-// // Create AES decipher object
-// const decipher = crypto.createDecipheriv('aes-256-cbc', key1, iv1);
+// Create AES decipher object
+const decipher = crypto.createDecipheriv('aes-256-cbc', key1, iv1);
 
-// // Decrypt the text
-// let decryptedText = decipher.update(decrData);
-// decryptedText += decipher.final();
-
+// Decrypt the text
+let decryptedText = decipher.update(decrData);
+decryptedText += decipher.final();
+const encryptedFilePath = `public/downloads/D${filePath}`;
+fs.writeFileSync(encryptedFilePath, JSON.stringify(decryptedText));
 // console.log('Decrypted Text:', decryptedText);
+}

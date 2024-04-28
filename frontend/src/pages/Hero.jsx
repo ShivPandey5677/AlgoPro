@@ -1,10 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
+import { makeRequest } from '../axios';
+import axios from 'axios';
 
 const Hero = () => {
-  
+  const [file, setFile] = useState(null);
+  const [filePath,setFilePath]=useState({fileURL:""})
+  const upload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await makeRequest.post("/upload", formData);
+      return res.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+   const handleFile=async()=>{
+    if(file){
+      const fileUrl=await upload();
+      setFilePath({fileURL:fileUrl})
 
+    }
+   }
+   const handleEncryptRequest=async ()=>{
 
+    try{
+      const response = await axios.post("http://localhost:8000/api/encrypt", filePath,{
+        withCredentials:true,
+      });
+      console.log(response)
+    }catch(error){
+    console.log("Error Encrypting File",error)
+    }
+   }
   return (
     <div className="relative bg-black opacity-90">
       <img src="assets/po.jpg" alt="Background" className="object-cover w-full h-full " />
@@ -51,8 +80,9 @@ const Hero = () => {
           </h2>
           <div className="flex justify-center">
           <label htmlFor="file-upload" className="border border-red-500 text-white py-2 px-4 mr-4 cursor-pointer">FILE UPLOAD</label>
-            <input id="file-upload" type="file" className="hidden" />    
-                    <button className="border border-red-500 text-white py-2 px-4 mr-4">ENCRYPT FILE</button>
+            <input id="file-upload" type="file" className="text-white" onChange={(e)=>setFile(e.target.files[0])}/>  
+            <button className="border border-red-500 text-white py-2 px-4 mr-4" onClick={handleFile}>UPLOAD</button>  
+                    <button className="border border-red-500 text-white py-2 px-4 mr-4" onClick={handleEncryptRequest}>ENCRYPT FILE</button>
             <button className="border border-red-500 text-white py-2 px-4 mr-4">DECRYPT FILE</button>
             <button className="border border-red-500 text-white py-2 px-4">COMPRESS FILE</button>
           </div>
