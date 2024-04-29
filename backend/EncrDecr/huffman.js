@@ -292,13 +292,13 @@ function compress(inputFile, outputFile, tree, codes) {
 //         outputStream.end();
 //     });
 // }
-function decompress(inputFile, outputFile) {
+export function decompress(inputFile, outputFile) {
   // const inputStream = fs.createReadStream(inputFile, { encoding: 'utf8' });
 
   const outputStream = fs.createWriteStream(outputFile, { encoding: 'utf8' });
 
   let compressedObjectString = '';
-  compressedObjectString=fs.readFileSync(inputFile)
+  compressedObjectString=fs.readFileSync(`public/uploads/${inputFile}`)
  
   // inputStream.on(', (chunk) => {
   //   console.log(chunk)
@@ -340,7 +340,7 @@ function decompress(inputFile, outputFile) {
 
 
 
-  export default function huff(inputfile) {
+  export function huffcompress(inputfile) {
     const inputFile = `public/uploads/${inputfile}`;
     const data = fs.readFileSync(inputFile, 'utf-8');
     
@@ -370,7 +370,10 @@ function decompress(inputFile, outputFile) {
     const outputFile = path.resolve('output.txt');
     // compress( inputFile,outputFile,codes,codes);
  compress(inputFile,outputFile,codes,codes)
- const decompressedFile = path.resolve('d.txt');
- decompress(outputFile, decompressedFile);
+//  const decompressedFile = path.resolve('d.txt');
+//  decompress(outputFile, decompressedFile);
+return outputFile
 }
+
+
 

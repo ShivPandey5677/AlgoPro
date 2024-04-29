@@ -29,12 +29,12 @@ export function AESEncrypt(filePath) {
     const encryptedFilePath = `public/downloads/E${filePath}`;
     fs.writeFileSync(encryptedFilePath, JSON.stringify(encryptedObject));
     
-   return encryptedFilePath
+   return `E${filePath}`
 
 }
 // DECRYPTION
 export function AESDecrypt(filePath){
-const decrObject = JSON.parse(fs.readFileSync(encryptedFilePath))
+const decrObject = JSON.parse(fs.readFileSync(`public/uploads/${filePath}`))
 const key1 = Buffer.from(decrObject.key, 'hex');
 const iv1 = Buffer.from(decrObject.iv, 'hex');
 const decrData = Buffer.from(decrObject.encryptedData, 'hex');
@@ -54,4 +54,5 @@ decryptedText += decipher.final();
 const encryptedFilePath = `public/downloads/D${filePath}`;
 fs.writeFileSync(encryptedFilePath, JSON.stringify(decryptedText));
 // console.log('Decrypted Text:', decryptedText);
+return `D${filePath}`
 }

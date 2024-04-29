@@ -34,6 +34,37 @@ const Hero = () => {
     console.log("Error Encrypting File",error)
     }
    }
+   const handleDecryptRequest=async ()=>{
+
+    try{
+      const response = await axios.post("http://localhost:8000/api/decrypt", filePath,{
+        withCredentials:true,
+      });
+      console.log(response)
+    }catch(error){
+    console.log("Error Decrypting File",error)
+    }
+   }
+   const handleCompress=async ()=>{
+    try{
+      const response = await axios.post("http://localhost:8000/api/compress", filePath,{
+        withCredentials:true,
+      });
+      console.log(response)
+    }catch(error){
+    console.log("Error Compressing File",error)
+    }
+   }
+   const handleDECompress=async ()=>{
+    try{
+      const response = await axios.post("http://localhost:8000/api/decompress", filePath,{
+        withCredentials:true,
+      });
+      console.log(response)
+    }catch(error){
+    console.log("Error Compressing File",error)
+    }
+   }
   return (
     <div className="relative bg-black opacity-90">
       <img src="assets/po.jpg" alt="Background" className="object-cover w-full h-full " />
@@ -83,8 +114,9 @@ const Hero = () => {
             <input id="file-upload" type="file" className="text-white" onChange={(e)=>setFile(e.target.files[0])}/>  
             <button className="border border-red-500 text-white py-2 px-4 mr-4" onClick={handleFile}>UPLOAD</button>  
                     <button className="border border-red-500 text-white py-2 px-4 mr-4" onClick={handleEncryptRequest}>ENCRYPT FILE</button>
-            <button className="border border-red-500 text-white py-2 px-4 mr-4">DECRYPT FILE</button>
-            <button className="border border-red-500 text-white py-2 px-4">COMPRESS FILE</button>
+            <button className="border border-red-500 text-white py-2 px-4 mr-4" onClick={handleDecryptRequest}>DECRYPT FILE</button>
+            <button className="border border-red-500 text-white py-2 px-4" onClick={handleCompress}>COMPRESS FILE</button>
+            <button className="border border-red-500 text-white py-2 px-4" onClick={handleDECompress}>DECOMPRESS FILE</button>
           </div>
         </div>
       </div>
