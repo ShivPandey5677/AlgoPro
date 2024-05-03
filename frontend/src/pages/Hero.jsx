@@ -28,8 +28,19 @@ const Hero = () => {
     try{
       const response = await axios.post("http://localhost:8000/api/encrypt", filePath,{
         withCredentials:true,
+        responseType: 'blob',
       });
-      console.log(response)
+      console.log(response);
+      if (response) {
+        alert("Downloading your encrypted file!!");
+      }
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'encrypted_file.txt'); 
+            document.body.appendChild(link);
+            link.click();
+
     }catch(error){
     console.log("Error Encrypting File",error)
     }
@@ -39,8 +50,18 @@ const Hero = () => {
     try{
       const response = await axios.post("http://localhost:8000/api/decrypt", filePath,{
         withCredentials:true,
+        responseType: 'blob',
       });
       console.log(response)
+      if (response) {
+        alert("Downloading your Decrypted file!!");
+      }
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'decrypted_file.txt'); 
+            document.body.appendChild(link);
+            link.click();
     }catch(error){
     console.log("Error Decrypting File",error)
     }
@@ -49,8 +70,18 @@ const Hero = () => {
     try{
       const response = await axios.post("http://localhost:8000/api/compress", filePath,{
         withCredentials:true,
+        responseType: 'blob',
       });
       console.log(response)
+      if (response) {
+        alert("Downloading your Compressed file!!");
+      }
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'compressed_file.txt'); 
+            document.body.appendChild(link);
+            link.click();
     }catch(error){
     console.log("Error Compressing File",error)
     }
@@ -59,10 +90,20 @@ const Hero = () => {
     try{
       const response = await axios.post("http://localhost:8000/api/decompress", filePath,{
         withCredentials:true,
+        responseType: 'blob',
       });
       console.log(response)
+      if (response) {
+        alert("Downloading your Decompressed file!!");
+      }
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'Decompressed_file.txt'); 
+            document.body.appendChild(link);
+            link.click();
     }catch(error){
-    console.log("Error Compressing File",error)
+    console.log("Error Decompressing File",error)
     }
    }
   return (
@@ -74,16 +115,16 @@ const Hero = () => {
           <h1 className='mt-12 text-5xl font-bold mb-4 text-white bg-gradient-to-r from-orange-900  to-teal-800'>
             <TypeAnimation
               sequence={[
-                'hello',
+                "Let's Encrpyt",
                 1000,
-                'Bonjour',
+                'Text files Only!!',
                 2000,
-                ' S̄wạs̄dī ',
+                ' Compression and Decompression',
                 2000,
-                'Ciao',
-                1000,
-                ' Nǐ hǎo',
-                1000
+                // 'Ciao',
+                // 1000,
+                // ' Nǐ hǎo',
+                // 1000
               ]}
               wrapper="span"
               speed={50}
@@ -111,7 +152,7 @@ const Hero = () => {
           </h2>
           <div className="flex justify-center">
           <label htmlFor="file-upload" className="border border-red-500 text-white py-2 px-4 mr-4 cursor-pointer">FILE UPLOAD</label>
-            <input id="file-upload" type="file" className="text-white" onChange={(e)=>setFile(e.target.files[0])}/>  
+            <input id="file-upload" type="file" accept=".txt"  className="text-white" onChange={(e)=>setFile(e.target.files[0])}/>  
             <button className="border border-red-500 text-white py-2 px-4 mr-4" onClick={handleFile}>UPLOAD</button>  
                     <button className="border border-red-500 text-white py-2 px-4 mr-4" onClick={handleEncryptRequest}>ENCRYPT FILE</button>
             <button className="border border-red-500 text-white py-2 px-4 mr-4" onClick={handleDecryptRequest}>DECRYPT FILE</button>
