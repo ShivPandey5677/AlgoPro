@@ -367,12 +367,12 @@ export function decompress(inputFile, outputFile) {
     console.log("Huffman Codes:", codes);
     
     // Compress the input text file
-    const outputFile = path.resolve('output.txt');
+    const outputFile = path.resolve('public/downloads', 'output.txt');
     // compress( inputFile,outputFile,codes,codes);
  compress(inputFile,outputFile,codes,codes)
 //  const decompressedFile = path.resolve('d.txt');
 //  decompress(outputFile, decompressedFile);
-return outputFile
+return "output.txt";
 }
 
 

@@ -62,12 +62,18 @@ export async function decryptFile(req,res){
 export async function compressFile(req,res){
  const fileadd=req.body.fileURL;
  try{
-    const outputFile=huffcompress(fileadd)
-    const filename = 'public/downloads/';
-    const file = path.resolve(filename, outputFile);
-    console.log(file)
-     return res.download(file)
-   // return res.status(200).json(outputFile)
+    const outputFile= huffcompress(fileadd)
+
+    // if (outputFile) {
+    //  // console.log(outputFile);
+    //     const filename = 'public/downloads/';
+    //     const file = path.resolve(filename ,outputFile);
+    //     console.log(file);
+    //    // fs.writeFileSync(file, outputFile);
+    //      return res.download(file)
+    // }
+    
+   return res.status(200).json(outputFile)
  }catch(error){
   console.log("Error Compressing File",error)
   return res.status(500).json("Internal Server Error")
@@ -78,11 +84,11 @@ export async function decompressFile(req,res){
   try{
 const decompressedFile = path.resolve(`public/downloads/de${fileadd}.txt`);
  decompress(fileadd, decompressedFile);
- const filename = 'public/downloads/';
-    const file = path.resolve(filename, decompressFile);
-    console.log(file)
-     return res.download(file)
- //return res.status(200).json(decompressedFile)
+//  const filename = 'public/downloads/';
+//     const file = path.resolve(filename, decompressFile);
+//     console.log(file)
+//      return res.download(file)
+ return res.status(200).json(decompressedFile)
   }catch(error)
 {
   console.log("Error DECompressing File",error)
