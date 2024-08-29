@@ -16,29 +16,29 @@ The project is designed to ensure secure file handling, with encrypted files sto
 
 
 **Features**
-AES Encryption/Decryption:
+**AES Encryption/Decryption:**
 
-Uses AES-256-CBC for secure file encryption.
+  Uses AES-256-CBC for secure file encryption.
 
-Generates a 256-bit key and a 128-bit initialization vector (IV).
+  Generates a 256-bit key and a 128-bit initialization vector (IV).
 
-Encrypts the file data and saves the encrypted output.
+  Encrypts the file data and saves the encrypted output.
 
-Decrypts the file data using the stored key and IV.
+  Decrypts the file data using the stored key and IV.
 
-ECC Encryption/Decryption:
+**ECC Encryption/Decryption:**
 
-Uses Elliptic Curve Cryptography to generate a symmetric key.
+  Uses Elliptic Curve Cryptography to generate a symmetric key.
 
-Encrypts file data with AES-256-CBC and stores it securely.
+  Encrypts file data with AES-256-CBC and stores it securely.
 
-Decrypts file data using the stored key and IV.
+  Decrypts file data using the stored key and IV.
 
-Huffman Compression/Decompression:
+**Huffman Compression/Decompression:**
 
-Compresses file data using Huffman coding to reduce file size.
+  Compresses file data using Huffman coding to reduce file size.
 
-Decompresses Huffman-encoded files back to their original form.
+  Decompresses Huffman-encoded files back to their original form.
 
 
 
@@ -50,6 +50,6 @@ Decompresses Huffman-encoded files back to their original form.
 
 **Installation and Setup
 **
-Prerequisites
+  Prerequisites
 
-Node.js (v12+)
+  Node.js (v12+)
